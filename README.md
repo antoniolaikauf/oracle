@@ -23,5 +23,13 @@ un modo per mitigare questi problemi sarebbe di creare un **oracle decentralizza
 è come sulle macchine, puoi renderle sicure quanto vuoi ma il rischio rimane 
 
 
+### Processo
+
+l'oracle una volta che ha ottenuto i suoi dati li deve rendere compatibili alla blockchain, deve fare lo stesso lavoro che fa il compiler nel trasformare il codice in bit cosi che la macchina riesca a capire. 
+In questa fase l'oracle potrebbe fare processi come **filtraggio**, **aggregazioen**, **validazione** dei dati per renderli sicuri e accurati, fa lo stesso lavoro dei dati che servono per allenare un modello di AI.
+durante il processo di validazione l'oracle usa tecniche di **crittografia** cosi che i dati durante il transito non vengono modificati [**tampering**](https://en.wikipedia.org/wiki/Tampering_(crime)).
+Per trasmettere dati all'interno della blockchain lo si fa attraverso una transazione speciale, questa transazione come le altre viene validata dai nodi.
+Una volta che gliinput sono all'interno della blockchain ed è immutabile gli smart-contract possono interagire con essi ES. uno smart-contract potrebbe rilasciare i fondi una volta che il prezzo di un azione raggiunge un certo livello 
+
 
 
