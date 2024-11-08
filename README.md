@@ -31,5 +31,20 @@ durante il processo di validazione l'oracle usa tecniche di **crittografia** cos
 Per trasmettere dati all'interno della blockchain lo si fa attraverso una transazione speciale, questa transazione come le altre viene validata dai nodi.
 Una volta che gliinput sono all'interno della blockchain ed è immutabile gli smart-contract possono interagire con essi ES. uno smart-contract potrebbe rilasciare i fondi una volta che il prezzo di un azione raggiunge un certo livello 
 
+# Decentralized Oracle Networks (DONs)
+
+L'obbiettivo principale di questi oracle è di superare le limitazioni dei oracle centralizzati, ilquale possono essere punti vulnerabili all'interno della blockchain. Gli oracle centralizzati potrebbero portare il richio di portare dati manipolati essendo l'unica risorsa dei dati i DONs **ottengono dati da varie fonti indipendenti** cosi da migliorare l'affidabilità.
+
+### Processo
+
+questi sono composti da vari nodi che ottengono dati dal mondo reale e si accordano prima di inviarli dentro alla blockchain, questo processo assicura che anche se ci sono delle discrepanze tra i dati questi vengono filtrati migliorando la **sicurezza e la fiducia**, **l'accuratezza dei dati**, **resistenza alla manipolazione**, **migliorando l'affidabilità** 
+
+uno dei racle più usati è [**Chainlink**](https://chain.link/) e [**Bandprotocol**](https://www.bandprotocol.com/)
+
+Chainlink utilizza un modello decntralizzato che raccoglie dati e li verifica, invece Bandprotocol prioritizza l'efficienza e velocità riducendo il time e le risorse computazionali richieste per processare dati e validarli, inoltre Chainlink lavora con più nodi rispetto a Bandprotocol questo può aumentare la sicurezza dei dati ma diminuisce la latenza (velocità di risposta di un sistema) invece Bandprotocol utilizza meno nodi diminuendo la latenza ma aumentando la centralizzazione 
+
+
+# l'oracle che faro all'inizio sarà centralizzato per poi farlo decentralizzato (ovviamnete se riesco essendo che non so neanche da dove iniziare)
+
 
 
