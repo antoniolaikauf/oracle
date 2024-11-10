@@ -1,11 +1,10 @@
 const solc = require("solc");
-const path = require("path");
 const fs = require("fs");
 
 const contractName = "Wheder";
 const file_name = `${contractName}.sol`;
 
-const file_path = fs.readFileSync(__dirname + "/" + file_name, "utf8");
+const file_path = fs.readFileSync(__dirname + "/" + file_name, "utf-8");
 
 var input = {
   language: "Solidity",
