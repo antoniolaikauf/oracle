@@ -10,5 +10,7 @@ contract Wheder {
 
     function get_wheder() public view returns (string memory) {
         return Wheder_city;
+
+        
     }
 }

@@ -1,11 +1,16 @@
 {
+  "name": "oracle",
+  "version": "1.0.0",
+  "description": "gli oracle sono utilizzati per connettere la **blockchain** ai sistemi esterni e quindi ottenere data che sono **off-chain** essendo che una caratteristica che manca alle blockchain è quella di ottenere dati dall'esterno essendo che le **blockchain non fanno parte del mondo reale** quindi se degli smart-contract devono fare decisioni in base ad eventi che sono nel mondo reale bisogna portare le informazioni nella blockchain.\r quindi gli oracle sono ponti che servono per collegare i due mondi: quello **off-chain** e quello **on-chain**",
+  "main": "compile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "axios": "^1.7.7",
-    "hardhat": "^2.22.15",
-    "solc": "^0.8.28",
-    "web3": "^4.15.0"
-  },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
+    "solc": "^0.8.28"
   }
 }
