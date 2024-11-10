@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Web3 } = require("web3");
+const { ethers } = require("ethers");
 
 const wheder = async () => {
   try {
