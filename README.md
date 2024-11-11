@@ -80,13 +80,17 @@ npm install axios
 npm install --save ethers
 ```
 
-## creazione del file .env
+## Creazione del file .env
 
 ```markdown
 API_URL='rete'
 PRIVATE_KEY='private key del portafoglio stare attenti a meterlo nel env perchè potrebbe non essere sicuro al 100%'
 
-esecuzione nel terminale source .env
+esecuzione nel terminale
+
+set -a
+source .env
+set +a
 ```
 
 ## Esecuzione

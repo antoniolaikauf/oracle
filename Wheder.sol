@@ -2,9 +2,19 @@
 pragma solidity ^0.8.0;
 
 contract Wheder {
-    string public Wheder_city;
+    string private Wheder_city;
+    address private immutable i_owner;
 
-    function upgrade_wheder(string memory _wheder) public {
+    modifier only_owner() {
+        require(msg.sender == i_owner);
+        _;
+    }
+
+    constructor() {
+        i_owner = msg.sender;
+    }
+
+    function upgrade_wheder(string memory _wheder) public only_owner {
         Wheder_city = _wheder;
     }
 

@@ -8,7 +8,7 @@ const abi = JSON.parse(fs.readFileSync(__dirname + "/" + "ContractAbi.json").toS
 // byte_code per macchina EVM
 const byte_code = fs.readFileSync(__dirname + "/" + "ContractBytecode.bin").toString();
 
-console.log(API_URL);
+// console.log(API_URL);
 console.log(PRIVATE_KEY);
 
 const provider = new ethers.JsonRpcProvider(API_URL);
