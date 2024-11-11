@@ -47,6 +47,13 @@ Chainlink utilizza un modello decntralizzato che raccoglie dati e li verifica, i
 
 ## Installazione [node](https://nodejs.org/en/?ref=Mazik-documentation)
 
+## Installazione metemask con fondi all'interno
+
+per ottenere i dondi ci sono due opzioni:
+se lo vuoi deploiare su una rete test vai [Alchemy](https://dashboard.alchemy.com/) e [Chainlink](https://dev.chain.link/)
+
+se lo vuoi deploiare su una rete mainnet devi usare i tuoi fondi
+
 ## Download progetto
 
 ```markdown
@@ -73,6 +80,15 @@ npm install axios
 npm install --save ethers
 ```
 
+## creazione del file .env
+
+```markdown
+API_URL='rete'
+PRIVATE_KEY='private key del portafoglio stare attenti a meterlo nel env perchè potrebbe non essere sicuro al 100%'
+
+esecuzione nel terminale source .env
+```
+
 ## Esecuzione
 
 ```markdown
@@ -82,3 +98,9 @@ node deploy.js
 ```
 
 alla fine dovresti avere l'address con cui si può interagire
+
+## opzioni
+
+volendo si può cambiare la rete su cui fare il deploy del contratto cambiando nel API_URL.
+
+Creare account a [alchemy](https://dashboard.alchemy.com/) e vedere tutte le reti

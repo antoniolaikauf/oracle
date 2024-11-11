@@ -41,13 +41,9 @@ async function deploy(c) {
   console.log(address);
   // esecuzione prima a 0 e dopo ogni ora
   upgrade_contract(contract_deploy);
-  count = 0;
   setInterval(() => {
-    count++;
-    if (count % 3600 === 0) {
-      upgrade_contract(contract_deploy);
-    }
-  }, 1000);
+    upgrade_contract(contract_deploy);
+  }, 3600 * 1000);
 }
 
 deploy(contract);
