@@ -27,13 +27,6 @@ async function upgrade_contract(contract_deployed) {
       console.log(transazione, "transazione");
     });
 
-    // setTimeout(() => {
-    //   const get = contract_deployed.get_wheder();
-    //   get.then((value) => {
-    //     console.log(value, "risposta");
-    //   });
-    // }, 1000);
-
     console.log(dati_wheder.weather[0].main);
   } catch (error) {
     console.error(error);
