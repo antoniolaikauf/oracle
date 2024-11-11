@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity ^0.8.0;
 
 contract Wheder {
     string public Wheder_city;
@@ -10,7 +10,5 @@ contract Wheder {
 
     function get_wheder() public view returns (string memory) {
         return Wheder_city;
-
-        
     }
 }
