@@ -7,8 +7,6 @@ const { API_URL, PRIVATE_KEY } = process.env;
 const abi = JSON.parse(fs.readFileSync(__dirname + "/" + "ContractAbi.json").toString());
 // byte_code per macchina EVM
 const byte_code = fs.readFileSync(__dirname + "/" + "ContractBytecode.bin").toString();
-// console.log(abi);
-// console.log(byte_code);
 
 console.log(API_URL);
 console.log(PRIVATE_KEY);
@@ -24,7 +22,7 @@ async function upgrade_contract(contract_deployed) {
   try {
     const dati = await axios.get("https://api.openweathermap.org/data/2.5/weather?q=milano&appid=0be4b5ede4e652b4492170e06575be32");
     let dati_wheder = dati.data;
-    const send = contract_deployed.upgrade_wheder("ciaoaoao");
+    const send = contract_deployed.upgrade_wheder(dati_wheder.weather[0].main);
     send.then((transazione) => {
       console.log(transazione, "transazione");
     });
@@ -35,8 +33,8 @@ async function upgrade_contract(contract_deployed) {
     //     console.log(value, "risposta");
     //   });
     // }, 1000);
-    
-    console.log(dati_wheder);
+
+    console.log(dati_wheder.weather[0].main);
   } catch (error) {
     console.error(error);
   }
@@ -61,7 +59,12 @@ async function deploy(c) {
 
 deploy(contract);
 
+// l'address del contratto cambia ogni volta per colpa del nonce
 // 0x231023aEfAB5d67D46feEe6695D71242f7d8594A // address contratto
+
+// 0x20e40f1963e5eE9409c93BBED1b4ba09bA3Ee257
+
+// 0x96b8ea5D70581cB6C0F43F08cF5f86E38a87A36A
 
 // https://opt-mainnet.g.alchemy.com/v2/_A07DZeEX7CPpIrS6nJdRZ1O-HDSPUIF
 // https://eth-sepolia.g.alchemy.com/v2/_A07DZeEX7CPpIrS6nJdRZ1O-HDSPUIF
