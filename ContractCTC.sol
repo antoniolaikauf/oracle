@@ -1,6 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+/**
+ * @title  Tct
+ * @author Antonio Laikauf
+ * @notice implementazione di un oracle TC
+ */
+
 contract Tct {
     uint256 private Counter = 0;
     uint256 public constant Gmin = 50000 wei; // gas min deliver
@@ -11,8 +17,10 @@ contract Tct {
     address private callback; // address a cui inviare i dati
     uint256 private f; // fee quanto è disposto a pagare l'utente
     uint256[] public deposit_f; // deposito
-    address private immutable i_address_Owner;
 
+    /**
+     * @param  params I dati che l'oracolo riceve.
+     */
     struct params {
         string Url; // sito dove ottenere i dati
         string spec; // data da ottenere
@@ -32,10 +40,9 @@ contract Tct {
     mapping(uint256 => bool) isCanceled;
     mapping(uint256 => bool) isDelivered;
 
-    constructor() {
-        i_address_Owner = msg.sender;
-    }
-
+    /**
+     * @notice funzione per dare dati all'oracle
+     */
     function Request(
         address _callback,
         string memory _paramUrl,
@@ -56,14 +63,19 @@ contract Tct {
         data memory store_data = data(params_data, Id, callback, f, msg.sender);
         message1[Id] = store_data;
 
-        /*
-         scelto trasfrmarlo in hash essendo che nel deliver
-         non si possono fare il ocnfronto tra due struct
-        */
-        bytes32 params_hash = keccak256(abi.encode(_paramUrl, _paramSpec, _T)); 
+        /**
+         * @dev scelto di trasformare in hash i parametri essendo che dopo
+         * @dev i parametri bisogna ricontrollarli nella funzione dleiver e
+         * @dev quindi si confronta l'hash di questi con i parametri che
+         * @dev rivece la funzione deliver
+         */
+        bytes32 params_hash = keccak256(abi.encode(_paramUrl, _paramSpec, _T));
         params_store[Id] = params_hash;
     }
 
+    /**
+     * @notice funzione  per dare dati al contratto che ha chiamato l'oracle
+     */
     function deliver(
         uint256 _id,
         string memory _paramUrl,
@@ -81,20 +93,22 @@ contract Tct {
             return;
         }
 
-        bytes32 params_hash = params_store[_id]; // abort if not found crearlo 
+        bytes32 params_hash = params_store[_id]; // abort if not found crearlo
 
         bytes32 params_hash1 = keccak256(abi.encode(_paramUrl, _paramSpec, _T));
 
         assert(params_hash == params_hash1 && f <= _Gdvr && !isDelivered[_id]);
         isDelivered[_id] = true;
         payable(msg.sender).transfer(f);
-        Gclbk = f - Gmin;
 
+        Gclbk = f - Gmin;
+        /**
+         * @notice passaggio dei dati alla funzione del contratto che ha chiamato l'oracle
+         */
         bytes4 selector = bytes4(keccak256("funzione a chi inviare"));
         (bool success, bytes memory data) = callback.call{gas: Gclbk}(
             abi.encodeWithSelector(selector, _data)
         );
-
         require(success, "fallito");
     }
 
