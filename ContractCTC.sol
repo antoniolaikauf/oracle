@@ -13,12 +13,13 @@ contract Tct {
         string spec; // data da ottenere
         uint256 T; // quando inviare i dati
         uint256 Id; // id
-        address callback; //
-        uint256 f;
+        address callback; // dove invieare i dati
+        uint256 f; // gas utente disposto a pagare
+        address cu; // address contratto
     }
 
-    // data[] private params;
     mapping(address => data) check_params;
+
     function Request(
         address _callback,
         string memory _paramsUrl,
@@ -27,6 +28,7 @@ contract Tct {
         uint256 _f,
         uint256 _gReq
     ) public {
+        assert(Gmin <= _f && _f < Gmax);
         uint256 Id = Counter;
         Counter += 1;
         data memory Params = data(
@@ -35,7 +37,8 @@ contract Tct {
             _T,
             Id,
             _callback,
-            _f
+            _f,
+            msg.sender
         );
         check_params[msg.sender] = Params;
     }
