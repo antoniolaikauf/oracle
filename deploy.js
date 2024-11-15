@@ -55,5 +55,11 @@ deploy(contract);
 
 // 0x96b8ea5D70581cB6C0F43F08cF5f86E38a87A36A
 
-// https://opt-mainnet.g.alchemy.com/v2/_A07DZeEX7CPpIrS6nJdRZ1O-HDSPUIF
-// https://eth-sepolia.g.alchemy.com/v2/_A07DZeEX7CPpIrS6nJdRZ1O-HDSPUIF
+// Supporting cross-blockchain interoperability: Chainlink can connect blockchain platforms to support the exchange of messages, tokens, and specific actions.
+
+/*
+Data signing – Chainlink oracles sign the data they input on-chain with a unique cryptographic signature, allowing users to prove its origin as being from a specific oracle node.
+
+
+Graphene-SGX o Occlum per teconologia TC SGX
+*/

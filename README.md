@@ -18,6 +18,7 @@ ci sono due problemi riguardante gli oracle
 
 1. come si fa a capire che i dati che otteniamo dalla blockchain sono accurati
 2. non abbiamo nessuna garanzia che gli oracle rimaranno online e funzionati tutto il tempo
+3. se un oracle è centralizzato vuol dire che **il nodo ha il controllo su quel smart contract**
 
 un modo per mitigare questi problemi sarebbe di creare un **oracle decentralizzato**, ottenendo fonti da diverse risorse. ma questo non toglie i problemi riduce solo la loro probabilità di accadere
 
