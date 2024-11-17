@@ -41,7 +41,7 @@ contract Tct {
     mapping(uint256 => bool) isDelivered;
 
     /**
-     * @notice funzione per dare dati all'oracle
+     * @notice funzione per dare dati all'oracle (form CU)
      */
     function Request(
         address _callback,
@@ -74,7 +74,7 @@ contract Tct {
     }
 
     /**
-     * @notice funzione  per dare dati al contratto che ha chiamato l'oracle
+     * @notice funzione  per dare dati al contratto che ha chiamato l'oracle (form Wallet enclave)
      */
     function deliver(
         uint256 _id,
@@ -111,6 +111,28 @@ contract Tct {
         );
         require(success, "fallito");
     }
+    /**
+     * @notice (from CU)
+     */
+    function cancel(uint256 _id) public {
+        data memory data_stored = message1[_id];
 
-    function cancel() public {}
+        bool isDelivered_cancel = isDelivered[_id];
+        bool isCanceled_cancel = isCanceled[_id];
+
+        assert(
+            msg.sender == data_stored.cu &&
+                data_stored.f >= Go &&
+                !isCanceled_cancel &&
+                !isDelivered_cancel
+        );
+
+        isCanceled[_id] = true;
+
+        uint256 fee = data_stored.f - Go;
+
+        assert(fee < data_stored.f && f < Go);
+
+        payable(msg.sender).transfer(fee); // hold Go
+    }
 }
