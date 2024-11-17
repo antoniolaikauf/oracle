@@ -8,11 +8,18 @@ pragma solidity ^0.8.0;
  */
 
 contract Tct {
+    /**
+     * Gmix gas minimo per il deliver
+     * Gmax gas massimo per il deliver
+     * Gcncl gas per la funzione cancel
+     * Go gas per il cancel quando stai processando il deliver
+     */
+
     uint256 private Counter = 0;
-    uint256 public constant Gmin = 50000 wei; // gas min deliver
-    uint256 public constant Gmax = 200000 wei; // gas max deliver
-    uint256 public constant Gcncl = 10000 wei; // gas cancel
-    uint256 public constant Go = 10000 wei; //  Gas needed for Deliver on a canceled request
+    uint256 public constant Gmin = 50000 wei;
+    uint256 public constant Gmax = 200000 wei;
+    uint256 public constant Gcncl = 10000 wei;
+    uint256 public constant Go = 10000 wei;
     uint256 private Gclbk; // gaslimit per callback
     address private callback; // address a cui inviare i dati
     uint256 private f; // fee quanto è disposto a pagare l'utente
@@ -104,8 +111,9 @@ contract Tct {
         Gclbk = f - Gmin;
         /**
          * @notice passaggio dei dati alla funzione del contratto che ha chiamato l'oracle
+         * @dev se la callback non viene eseguita allora bisogna chiamare la call cancel
          */
-        bytes4 selector = bytes4(keccak256("funzione a chi inviare"));
+        bytes4 selector = bytes4(keccak256("funzione a chi inviare  el CU"));
         (bool success, bytes memory data) = callback.call{gas: Gclbk}(
             abi.encodeWithSelector(selector, _data)
         );
@@ -130,9 +138,16 @@ contract Tct {
         isCanceled[_id] = true;
 
         uint256 fee = data_stored.f - Go;
-
+        /**
+         * @dev si ritorna le fee sottratte con Go al contratto che ha richiesto
+         * @dev i parametri e con il costo del gas di Gcnlc
+         */
         assert(fee < data_stored.f && f < Go);
+        (bool success, bytes memory data) = msg.sender.call{
+            value: fee,
+            gas: Gcncl
+        }("");
 
-        payable(msg.sender).transfer(fee); // hold Go
+        require(success);
     }
 }
