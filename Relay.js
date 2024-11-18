@@ -10,7 +10,8 @@ protected key to produce a proof that the measured software
  is running in an SGX-protected enclave
 
 
-il relay  It boots the Enclave with progencl.Initialize() and calls
+il relay  
+It boots the Enclave with progencl.Initialize() and calls
  progencl.Resume(idparams) on incoming requests.
 
  The Enclave progencl. When initialized through Initial
@@ -35,3 +36,21 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 
 
 */
+
+const ethers = require("ethers");
+const { URL_API } = process.env;
+const deploy = require("./deployCTC");
+let ciao = null;
+async () => {
+  const address_contratto = await deploy();
+  console.log(address_contratto);
+  ciao = address_contratto;
+};
+
+console.log(ciao);
+
+const provider = new ethers.JsonRpcProvider(URL_API);
+const filter = {
+  address,
+};
+provider.on(filter, (log, event) => {});

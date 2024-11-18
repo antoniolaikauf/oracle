@@ -80,7 +80,7 @@ contract Tct {
         bytes32 params_hash = keccak256(abi.encode(_paramUrl, _paramSpec, _T));
         params_store[Id] = params_hash;
 
-        emit request_Cu(Id, params_data);
+        emit reuqest_Cu(Id, params_data);
     }
 
     /**
