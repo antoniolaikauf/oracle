@@ -37,7 +37,7 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 */
 
 const ethers = require("ethers");
-const { deploy, provider } = require("./deployCTC");
+const { deploy, provider, contract } = require("./deployCTC");
 
 async function main() {
   try {
@@ -45,11 +45,10 @@ async function main() {
 
     // bisogna creare una nuova instanza (ho perso 3 ore perchè la importavo)
     const contractInstance = new ethers.Contract(contractAddress, contract.interface, provider);
-    console.log(contract.interface);
 
     // ascoto evento
     // gli eventi si trovano nelle abi
-    contract.on("Request_Cu", (id, params_Cu, event) => {
+    contractInstance.on("Request_Cu", (id, params_Cu, event) => {
       console.log("Nuovo evento request_Cu ricevuto:", {
         id: id.toString(),
         params_Cu,
@@ -59,18 +58,6 @@ async function main() {
     });
 
     console.log("In ascolto degli eventi...");
-
-    // // Gestione errori
-    // contractInstance.on("error", (error) => {
-    //   console.error("Errore nell'evento:", error);
-    // });
-
-    // // Gestione chiusura
-    // process.on("SIGINT", () => {
-    //   console.log("Chiusura del listener...");
-    //   contractInstance.removeAllListeners();
-    //   process.exit();
-    // });
   } catch (error) {
     console.error("Errore dettagliato:", error);
     process.exit(1);
