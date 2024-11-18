@@ -34,26 +34,25 @@ Data Fetching: It retrieves necessary data (e.g., API responses or sensor inputs
 Secure Processing: The fetched data is passed to the TEE, which processes it and generates authenticated results (e.g., signed datagrams).
 Blockchain Submission: The relay uses the TEE's output to generate a blockchain transaction, delivering the signed data back to the smart contract.
 
-
 */
 
-// const ethers = require("ethers");
+const ethers = require("ethers");
 // const { URL_API } = process.env;
-const { deploy, provider } = require("./deployCTC");
-console.log(provider);
+const { deploy, provider, contract } = require("./deployCTC");
 
 deploy()
   .then((address_contract) => {
     console.log(address_contract);
+    console.log(contract.interface);
 
-    const filter = {
-      address: address_contract,
-      topics: [utils.id("function Request(address _callback,string memory _paramUrl,string memory _paramSpec,uint256 _T,uint256 _f)")],
-    };
-    provider.on(filter, (log, event) => {
-      console.log(log);
-      console.log(event);
-    });
+    // provider.on(contract.filters.reuqest_Cu(), (from, to, data, event) => {
+    //   console.log("Transfer event triggered:", {
+    //     from: from,
+    //     to: to,
+    //     value: value.toString(),
+    //     data: event,
+    //   });
+    // });
   })
   .catch((error) => {
     console.error(error);

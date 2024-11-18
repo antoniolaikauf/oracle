@@ -60,5 +60,5 @@ async function deploy() {
   }
 }
 
-module.exports = { deploy, provider };
+module.exports = { deploy, contract, provider };
 // 0x4c78927Fcec5D4b488A2b887135cBbbad381c9F1 contratto

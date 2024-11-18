@@ -117,7 +117,7 @@ contract Tct {
          * @dev se la callback non viene eseguita allora bisogna chiamare la call cancel
          */
         bytes4 selector = bytes4(keccak256("funzione a chi inviare  el CU"));
-        (bool success,) = callback.call{gas: Gclbk}(
+        (bool success, ) = callback.call{gas: Gclbk}(
             abi.encodeWithSelector(selector, _data)
         );
         require(success, "fallito");
@@ -146,13 +146,11 @@ contract Tct {
          * @dev i parametri e con il costo del gas di Gcnlc
          */
         assert(fee < data_stored.f && f < Go);
-        (bool success,) = msg.sender.call{
-            value: fee,
-            gas: Gcncl
-        }("");
+        (bool success, ) = msg.sender.call{value: fee, gas: Gcncl}("");
 
         require(success);
     }
 }
 
 // vedere il Greq nel paper
+// testare in remix cosi si fa più veloce se funziona
