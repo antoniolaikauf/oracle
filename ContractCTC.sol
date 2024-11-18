@@ -42,7 +42,7 @@ contract Tct {
         address cu; // address contratto
     }
 
-    event reuqest_Cu(uint256 id, params params_Cu);
+    event Request_Cu(uint256 id, params params_Cu);
 
     mapping(uint256 => data) message1;
     mapping(uint256 => bytes32) params_store;
@@ -80,7 +80,7 @@ contract Tct {
         bytes32 params_hash = keccak256(abi.encode(_paramUrl, _paramSpec, _T));
         params_store[Id] = params_hash;
 
-        emit reuqest_Cu(Id, params_data);
+        emit Request_Cu(Id, params_data);
     }
 
     /**

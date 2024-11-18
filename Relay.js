@@ -37,23 +37,44 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 */
 
 const ethers = require("ethers");
-// const { URL_API } = process.env;
-const { deploy, provider, contract } = require("./deployCTC");
+const { deploy, provider } = require("./deployCTC");
 
-deploy()
-  .then((address_contract) => {
-    console.log(address_contract);
+async function main() {
+  try {
+    const contractAddress = await deploy();
+
+    // bisogna creare una nuova instanza (ho perso 3 ore perchè la importavo)
+    const contractInstance = new ethers.Contract(contractAddress, contract.interface, provider);
     console.log(contract.interface);
 
-    // provider.on(contract.filters.reuqest_Cu(), (from, to, data, event) => {
-    //   console.log("Transfer event triggered:", {
-    //     from: from,
-    //     to: to,
-    //     value: value.toString(),
-    //     data: event,
-    //   });
+    // ascoto evento
+    // gli eventi si trovano nelle abi
+    contract.on("Request_Cu", (id, params_Cu, event) => {
+      console.log("Nuovo evento request_Cu ricevuto:", {
+        id: id.toString(),
+        params_Cu,
+        transactionHash: event.transactionHash,
+        blockNumber: event.blockNumber,
+      });
+    });
+
+    console.log("In ascolto degli eventi...");
+
+    // // Gestione errori
+    // contractInstance.on("error", (error) => {
+    //   console.error("Errore nell'evento:", error);
     // });
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+
+    // // Gestione chiusura
+    // process.on("SIGINT", () => {
+    //   console.log("Chiusura del listener...");
+    //   contractInstance.removeAllListeners();
+    //   process.exit();
+    // });
+  } catch (error) {
+    console.error("Errore dettagliato:", error);
+    process.exit(1);
+  }
+}
+
+main();

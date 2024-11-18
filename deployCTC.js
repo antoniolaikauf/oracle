@@ -49,6 +49,7 @@ const abi_read = JSON.parse(fs.readFileSync(file_abi).toString());
 const bytecode_read = fs.readFileSync(file_bytecode).toString();
 const contract = new ethers.ContractFactory(abi_read, bytecode_read, wallet);
 
+
 async function deploy() {
   try {
     const contract_deploy = await contract.deploy();
@@ -60,5 +61,5 @@ async function deploy() {
   }
 }
 
-module.exports = { deploy, contract, provider };
+module.exports = { deploy, provider };
 // 0x4c78927Fcec5D4b488A2b887135cBbbad381c9F1 contratto
