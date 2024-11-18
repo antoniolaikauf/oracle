@@ -37,20 +37,24 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 
 */
 
-const ethers = require("ethers");
-const { URL_API } = process.env;
-const deploy = require("./deployCTC");
-let ciao = null;
-async () => {
-  const address_contratto = await deploy();
-  console.log(address_contratto);
-  ciao = address_contratto;
-};
+// const ethers = require("ethers");
+// const { URL_API } = process.env;
+const { deploy, provider } = require("./deployCTC");
+console.log(provider);
 
-console.log(ciao);
+deploy()
+  .then((address_contract) => {
+    console.log(address_contract);
 
-const provider = new ethers.JsonRpcProvider(URL_API);
-const filter = {
-  address,
-};
-provider.on(filter, (log, event) => {});
+    const filter = {
+      address: address_contract,
+      topics: [utils.id("function Request(address _callback,string memory _paramUrl,string memory _paramSpec,uint256 _T,uint256 _f)")],
+    };
+    provider.on(filter, (log, event) => {
+      console.log(log);
+      console.log(event);
+    });
+  })
+  .catch((error) => {
+    console.error(error);
+  });

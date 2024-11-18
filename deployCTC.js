@@ -54,13 +54,11 @@ async function deploy() {
     const contract_deploy = await contract.deploy();
     await contract_deploy.waitForDeployment();
     const transection = await contract_deploy.getAddress();
-    console.log(transection);
-
     return transection;
   } catch (error) {
     console.error(error);
   }
 }
 
-module.exports = deploy();
+module.exports = { deploy, provider };
 // 0x4c78927Fcec5D4b488A2b887135cBbbad381c9F1 contratto
