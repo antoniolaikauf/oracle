@@ -1,0 +1,193 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "Url",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "spec",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "T",
+						"type": "uint256"
+					}
+				],
+				"indexed": false,
+				"internalType": "struct Tct.params",
+				"name": "params_Cu",
+				"type": "tuple"
+			}
+		],
+		"name": "reuest_Cu",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "Gcncl",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "Gmax",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "Gmin",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "Go",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_callback",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_paramUrl",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_paramSpec",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_T",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_f",
+				"type": "uint256"
+			}
+		],
+		"name": "Request",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "cancel",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_paramUrl",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_paramSpec",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_T",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_data",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_Gdvr",
+				"type": "uint256"
+			}
+		],
+		"name": "deliver",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "deposit_f",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

@@ -42,6 +42,8 @@ contract Tct {
         address cu; // address contratto
     }
 
+    event reuest_Cu(uint256 id, params params_Cu);
+
     mapping(uint256 => data) message1;
     mapping(uint256 => bytes32) params_store;
     mapping(uint256 => bool) isCanceled;
@@ -55,8 +57,7 @@ contract Tct {
         string memory _paramUrl,
         string memory _paramSpec,
         uint256 _T,
-        uint256 _f,
-        uint256 _gReq // viene messa ma non viene usata nel request
+        uint256 _f // uint256 _gReq // viene messa ma non viene usata nel request
     ) public {
         assert(Gmin <= _f && _f < Gmax);
 
@@ -78,6 +79,8 @@ contract Tct {
          */
         bytes32 params_hash = keccak256(abi.encode(_paramUrl, _paramSpec, _T));
         params_store[Id] = params_hash;
+
+        emit reuest_Cu(Id, params_data);
     }
 
     /**
@@ -114,7 +117,7 @@ contract Tct {
          * @dev se la callback non viene eseguita allora bisogna chiamare la call cancel
          */
         bytes4 selector = bytes4(keccak256("funzione a chi inviare  el CU"));
-        (bool success, bytes memory data) = callback.call{gas: Gclbk}(
+        (bool success,) = callback.call{gas: Gclbk}(
             abi.encodeWithSelector(selector, _data)
         );
         require(success, "fallito");
@@ -143,7 +146,7 @@ contract Tct {
          * @dev i parametri e con il costo del gas di Gcnlc
          */
         assert(fee < data_stored.f && f < Go);
-        (bool success, bytes memory data) = msg.sender.call{
+        (bool success,) = msg.sender.call{
             value: fee,
             gas: Gcncl
         }("");
@@ -151,3 +154,5 @@ contract Tct {
         require(success);
     }
 }
+
+// vedere il Greq nel paper
