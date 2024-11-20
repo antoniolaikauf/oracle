@@ -31,7 +31,7 @@ contract Tct {
     struct params {
         string Url; // sito dove ottenere i dati
         string spec; // data da ottenere
-        uint256 T; // quando inviare i dati
+        string T; // quando inviare i dati
     }
 
     struct data {
@@ -60,7 +60,7 @@ contract Tct {
         address _callback,
         string memory _paramUrl,
         string memory _paramSpec,
-        uint256 _T,
+        string memory _T,
         uint256 _f // uint256 _gReq // viene messa ma non viene usata nel request
     ) public {
         assert(Gmin <= _f && _f < Gmax);
@@ -94,7 +94,7 @@ contract Tct {
         uint256 _id,
         string memory _paramUrl,
         string memory _paramSpec,
-        uint256 _T,
+        string memory _T,
         string memory _data,
         uint256 _Gdvr // viene scelto dal enclave e sarebbe il gas per il deliver
     ) public {

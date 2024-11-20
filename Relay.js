@@ -43,8 +43,9 @@ function Handle(id, params) {}
 
 async function main() {
   try {
-    const contractAddress = await deploy();
-    console.log(contractAddress);
+    const contractAddress = "0x11c9C829ae56f5CE218Af440DEF129bAa9517576";
+    // const contractAddress = await deploy();
+    // console.log(contractAddress);
 
     // bisogna creare una nuova instanza (ho perso 3 ore perchè la importavo)
     const contractInstance = new ethers.Contract(contractAddress, contract.interface, provider);
