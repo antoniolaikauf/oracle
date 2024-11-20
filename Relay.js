@@ -36,8 +36,11 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 
 */
 
-// const ethers = require("ethers");
-// const { deploy, provider, contract } = require("./deployCTC");
+const ethers = require("ethers");
+const { deploy, provider, contract } = require("./deployCTC");
+
+const { i_contract } = require("./instanceContratto.js");
+const signed = i_contract.instance();
 
 function Handle(id, params) {
   const time2 = new Date("Wed Nov 20 2024 16:11");
@@ -46,11 +49,14 @@ function Handle(id, params) {
     const time1 = new Date();
     if (time2 < time1) {
       clearInterval(check_time);
+      // invio dati a resume che si trova nel programma dell'enclave
+      // ricevi i dati dall'enclave e li mandi al CTC deliver cosi che la transazione si salvi sulla blockchain
+      // devo inviare i dati come WTC al TCT
+      // the Toff creates WTC with a fresh public key pk whose secret is known only to Toff.
     }
   }, 6000);
 }
-Handle("dd", "ddd");
-// Handle(id, params_Cu);
+// Handle("dd", "ddd");
 
 async function main() {
   try {
@@ -64,14 +70,25 @@ async function main() {
     // ascoto evento
     // gli eventi si trovano nelle abi
     contractInstance.on("Request_Cu", (id, params_Cu, event) => {
+      Handle(id, params_Cu);
       console.log("Nuovo evento request_Cu ricevuto:", id, params_Cu, event);
     });
 
     console.log("In ascolto degli eventi...");
   } catch (error) {
     console.error("Errore dettagliato:", error);
-    process.exit(1);
   }
 }
 
 // main();
+
+
+/*
+To implement this pseudocode:
+
+Use a cryptographic library that supports secure key generation and signing (e.g., OpenSSL, Intel SGX SDK).
+Ensure the private key remains within the enclave's memory space, protected from external access.
+Use the public key (pk) to register the enclave on the blockchain or with external validators.
+
+
+*/
