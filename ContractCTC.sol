@@ -17,7 +17,7 @@ contract Tct {
 
     uint256 private Counter = 0;
     uint256 public constant Gmin = 50000 wei;
-    uint256 public constant Gmax = 200000 wei;
+    uint256 public constant Gmax = 200200 wei;
     uint256 public constant Gcncl = 10000 wei;
     uint256 public constant Go = 10000 wei;
     uint256 private Gclbk; // gaslimit per callback
@@ -63,7 +63,7 @@ contract Tct {
         string memory _T,
         uint256 _f // uint256 _gReq // viene messa ma non viene usata nel request
     ) public {
-        assert(Gmin <= _f && _f < Gmax);
+        assert(Gmin <= _f && _f <= Gmax);
 
         uint256 Id = Counter;
         Counter += 1;

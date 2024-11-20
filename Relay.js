@@ -43,7 +43,7 @@ function Handle(id, params) {}
 
 async function main() {
   try {
-    const contractAddress = "0x11c9C829ae56f5CE218Af440DEF129bAa9517576";
+    const contractAddress = "0xa42b1378D1A84b153eB3e3838aE62870A67a40EA";
     // const contractAddress = await deploy();
     // console.log(contractAddress);
 
@@ -53,7 +53,7 @@ async function main() {
     // ascoto evento
     // gli eventi si trovano nelle abi
     contractInstance.on("Request_Cu", (id, params_Cu, event) => {
-      Handle(id, params_Cu);
+      // Handle(id, params_Cu);
       console.log("Nuovo evento request_Cu ricevuto:", id, params_Cu, event);
     });
 
