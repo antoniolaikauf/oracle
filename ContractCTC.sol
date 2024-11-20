@@ -63,7 +63,7 @@ contract Tct {
         string memory _T,
         uint256 _f // uint256 _gReq // viene messa ma non viene usata nel request
     ) public {
-        assert(Gmin <= _f && _f <= Gmax);
+        require(_f >= Gmin && _f <= Gmax, "Fee out of allowed range");
 
         uint256 Id = Counter;
         Counter += 1;

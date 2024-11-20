@@ -33,18 +33,18 @@ async function upgrade_contract(contract_deployed) {
   }
 }
 
-// async function deploy(c) {
-//   const contract_deploy = await c.deploy();
-//   await contract_deploy.waitForDeployment();
-//   const address = await contract_deploy.getAddress();
-//   // per vedere la transazione https://sepolia.etherscan.io/
-//   console.log(address);
-//   // esecuzione prima a 0 e dopo ogni ora
-//   upgrade_contract(contract_deploy);
-//   setInterval(() => {
-//     upgrade_contract(contract_deploy);
-//   }, 3600 * 1000);
-// }
+async function deploy(c) {
+  const contract_deploy = await c.deploy();
+  await contract_deploy.waitForDeployment();
+  const address = await contract_deploy.getAddress();
+  // per vedere la transazione https://sepolia.etherscan.io/
+  console.log(address);
+  // esecuzione prima a 0 e dopo ogni ora
+  upgrade_contract(contract_deploy);
+  setInterval(() => {
+    upgrade_contract(contract_deploy);
+  }, 3600 * 1000);
+}
 
 // deploy(contract);
 

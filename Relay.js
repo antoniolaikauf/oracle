@@ -36,14 +36,25 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 
 */
 
-const ethers = require("ethers");
-const { deploy, provider, contract } = require("./deployCTC");
+// const ethers = require("ethers");
+// const { deploy, provider, contract } = require("./deployCTC");
 
-function Handle(id, params) {}
+function Handle(id, params) {
+  const time2 = new Date("Wed Nov 20 2024 16:11");
+
+  const check_time = setInterval(() => {
+    const time1 = new Date();
+    if (time2 < time1) {
+      clearInterval(check_time);
+    }
+  }, 6000);
+}
+Handle("dd", "ddd");
+// Handle(id, params_Cu);
 
 async function main() {
   try {
-    const contractAddress = "0xa42b1378D1A84b153eB3e3838aE62870A67a40EA";
+    const contractAddress = "0x19a0870a66B305BE9917c0F14811C970De18E6fC";
     // const contractAddress = await deploy();
     // console.log(contractAddress);
 
@@ -53,7 +64,6 @@ async function main() {
     // ascoto evento
     // gli eventi si trovano nelle abi
     contractInstance.on("Request_Cu", (id, params_Cu, event) => {
-      // Handle(id, params_Cu);
       console.log("Nuovo evento request_Cu ricevuto:", id, params_Cu, event);
     });
 
@@ -64,4 +74,4 @@ async function main() {
   }
 }
 
-main();
+// main();
