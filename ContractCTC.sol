@@ -51,6 +51,10 @@ contract Tct {
 
     /**
      * @notice funzione per dare dati all'oracle (form CU)
+     * @param _callback  address dove mandare i parametri
+     * @param _paramUrl link url
+     * @param _paramSpec il contenuto specifico (es il prezzo di un asset)
+     * @param _T quando consegnarlo
      */
     function Request(
         address _callback,
