@@ -2,12 +2,10 @@
 // test per verificare il funzionamento
 // -----------------------------------------------------------------------------
 
-// const ethers = require("ethers");
 const { i_contract } = require("./instanceContratto.js");
 const signed = i_contract.instance();
-const { provider } = require("./deployCTC");
-const ethers = require("ethers");
 console.log(signed);
+console.log("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq8GF+cBYW4aR5Uk8RijL".length);
 
 const callback = "0x0AFA4Ec3388027a08C3454CCc2658CD4f5AACff0";
 const paramsUrl = "ciao";

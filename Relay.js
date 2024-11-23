@@ -38,7 +38,7 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 
 const ethers = require("ethers");
 const { deploy, provider, contract } = require("./deployCTC");
-
+const crypto = require("crypto");
 const { i_contract } = require("./instanceContratto.js");
 const signed = i_contract.instance();
 
@@ -59,10 +59,10 @@ function Handle(id, params) {
 }
 // Handle("dd", "ddd");
 
-async function main() {
+async function main(PK) {
   try {
-    const contractAddress = "0x0AFA4Ec3388027a08C3454CCc2658CD4f5AACff0";
-    // const contractAddress = await deploy();
+    // const contractAddress = "0x0AFA4Ec3388027a08C3454CCc2658CD4f5AACff0";
+    const contractAddress = await deploy(PK);
     // console.log(contractAddress);
     console.log(contractAddress);
 
@@ -83,7 +83,33 @@ async function main() {
   }
 }
 
-main();
+const keypair = crypto.generateKeyPair(
+  "rsa",
+  {
+    modulusLength: 2048,
+    publicKeyEncoding: {
+      type: "spki",
+      format: "pem",
+    },
+    privateKeyEncoding: {
+      type: "pkcs8",
+      format: "pem",
+    },
+  },
+  (err, publicKey, privateKey) => {
+    if (err) console.error(err);
+    const public_pemHeader = "-----BEGIN PUBLIC KEY-----";
+    const public_pemFooter = "-----END PUBLIC KEY-----";
+    const private_pemFooter = "-----END PRIVATE KEY-----";
+    const private_pemHeader = "-----BEGIN PRIVATE KEY-----";
+
+    const publicKey_byte64 = publicKey.replace(public_pemFooter, "").replace(public_pemHeader, "").replace(/\n/g, "").trim();
+    // const privateKey_byte64 = privateKey.replace(private_pemHeader, "").replace(private_pemFooter, "").replace("\n", "");
+    // main(publicKey_byte64);
+    console.log(publicKey_byte64.toString(2));
+    // console.log(privateKey_byte64);
+  }
+);
 
 /*
 To implement this pseudocode:

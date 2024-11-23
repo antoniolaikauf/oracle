@@ -1,6 +1,7 @@
 const ethers = require("ethers");
 const fs = require("fs");
 const solc = require("solc");
+const crypto = require("crypto");
 
 const { API_URL, PRIVATE_KEY } = process.env;
 
@@ -49,10 +50,11 @@ const abi_read = JSON.parse(fs.readFileSync(file_abi).toString());
 const bytecode_read = fs.readFileSync(file_bytecode).toString();
 const contract = new ethers.ContractFactory(abi_read, bytecode_read, wallet);
 
-// il deploy prenderà una public key e quindi dovra fare una coppia di chiavi private e pubblica 
-async function deploy() {
+// il deploy prenderà una public key e quindi dovra fare una coppia di chiavi private e pubblica
+
+async function deploy(publickKey) {
   try {
-    const contract_deploy = await contract.deploy();
+    const contract_deploy = await contract.deploy(publickKey);
     await contract_deploy.waitForDeployment();
     const transection = await contract_deploy.getAddress();
     return transection;
