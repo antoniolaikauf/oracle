@@ -39,8 +39,8 @@ Blockchain Submission: The relay uses the TEE's output to generate a blockchain 
 const ethers = require("ethers");
 const { deploy, provider, contract } = require("./deployCTC");
 const crypto = require("crypto");
-const { i_contract } = require("./instanceContratto.js");
-const signed = i_contract.instance();
+// const { i_contract } = require("./instanceContratto.js");
+// const signed = i_contract.instance();
 
 function Handle(id, params) {
   const time2 = new Date(params);
@@ -61,8 +61,8 @@ function Handle(id, params) {
 
 async function main(PK) {
   try {
-    // const contractAddress = "0x0AFA4Ec3388027a08C3454CCc2658CD4f5AACff0";
-    const contractAddress = await deploy(PK);
+    const contractAddress = "0x9e50e2938C85935E29cc83d1FBf4c4801D9c7bC7";
+    // const contractAddress = await deploy(PK);
     // console.log(contractAddress);
     console.log(contractAddress);
 
@@ -73,7 +73,7 @@ async function main(PK) {
     contractInstance.on("Request_Cu", (id, params_Cu, event) => {
       Handle(id, params_Cu[2]);
       // console.log(id, "sono id");
-      // console.log(params_Cu, "parametri ");
+      console.log(params_Cu, "parametri ");
       // console.log(event, "evento generale ");
     });
 
@@ -106,7 +106,18 @@ const keypair = crypto.generateKeyPair(
     const publicKey_byte64 = publicKey.replace(public_pemFooter, "").replace(public_pemHeader, "").replace(/\n/g, "").trim();
     // const privateKey_byte64 = privateKey.replace(private_pemHeader, "").replace(private_pemFooter, "").replace("\n", "");
     // main(publicKey_byte64);
-    console.log(publicKey_byte64.toString(2));
+    const buffer_base64 = Buffer.from(publicKey_byte64, "base64");
+    const hex = buffer_base64.toString("hex");
+    chunks = [];
+    for (let index = 0; index < hex.length; index += 64) {
+      let chunk = hex.slice(index, index + 64);
+      if (chunk.length < 64) {
+        chunk = chunk.padStart(64, "0");
+      }
+      chunks.push("0x" + chunk);
+    }
+    console.log(chunks);
+    main(chunks);
     // console.log(privateKey_byte64);
   }
 );

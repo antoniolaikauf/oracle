@@ -2,9 +2,9 @@
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "bytes32[]",
 				"name": "_pubblicKey",
-				"type": "bytes32"
+				"type": "bytes32[]"
 			}
 		],
 		"stateMutability": "nonpayable",
