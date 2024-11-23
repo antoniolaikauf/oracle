@@ -5,9 +5,11 @@
 // const ethers = require("ethers");
 const { i_contract } = require("./instanceContratto.js");
 const signed = i_contract.instance();
+const { provider } = require("./deployCTC");
+const ethers = require("ethers");
 console.log(signed);
 
-const callback = "0xa42b1378D1A84b153eB3e3838aE62870A67a40EA";
+const callback = "0x0AFA4Ec3388027a08C3454CCc2658CD4f5AACff0";
 const paramsUrl = "ciao";
 const paramsUrlspecifici = "ciao";
 const time = new Date(); // ora standart europa formato Wed Nov 20 2024 13:04:52

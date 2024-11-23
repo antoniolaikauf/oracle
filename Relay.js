@@ -60,18 +60,20 @@ function Handle(id, params) {
 
 async function main() {
   try {
-    const contractAddress = "0x19a0870a66B305BE9917c0F14811C970De18E6fC";
+    const contractAddress = "0x0AFA4Ec3388027a08C3454CCc2658CD4f5AACff0";
     // const contractAddress = await deploy();
     // console.log(contractAddress);
+    console.log(contractAddress);
 
     // bisogna creare una nuova instanza (ho perso 3 ore perchè la importavo)
     const contractInstance = new ethers.Contract(contractAddress, contract.interface, provider);
-
-    // ascoto evento
+    // ascolto evento
     // gli eventi si trovano nelle abi
     contractInstance.on("Request_Cu", (id, params_Cu, event) => {
       Handle(id, params_Cu);
-      console.log("Nuovo evento request_Cu ricevuto:", id, params_Cu, event);
+      console.log(id, 'sono id');
+      console.log(params_Cu, 'parametri ');
+      console.log(event, 'evento generale ');
     });
 
     console.log("In ascolto degli eventi...");
@@ -80,8 +82,7 @@ async function main() {
   }
 }
 
-// main();
-
+main();
 
 /*
 To implement this pseudocode:
