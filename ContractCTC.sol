@@ -24,6 +24,7 @@ contract Tct {
     address private callback; // address a cui inviare i dati
     uint256 private f; // fee quanto è disposto a pagare l'utente
     uint256[] public deposit_f; // deposito
+    bytes32 immutable i_public_key;
 
     /**
      * @param  params I dati che l'oracolo riceve.
@@ -48,6 +49,10 @@ contract Tct {
     mapping(uint256 => bytes32) params_store;
     mapping(uint256 => bool) isCanceled;
     mapping(uint256 => bool) isDelivered;
+
+    constructor(bytes32 _pubblicKey) {
+        i_public_key = _pubblicKey;
+    }
 
     /**
      * @notice funzione per dare dati all'oracle (form CU)

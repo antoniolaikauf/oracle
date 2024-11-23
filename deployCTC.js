@@ -49,6 +49,7 @@ const abi_read = JSON.parse(fs.readFileSync(file_abi).toString());
 const bytecode_read = fs.readFileSync(file_bytecode).toString();
 const contract = new ethers.ContractFactory(abi_read, bytecode_read, wallet);
 
+// il deploy prenderà una public key e quindi dovra fare una coppia di chiavi private e pubblica 
 async function deploy() {
   try {
     const contract_deploy = await contract.deploy();

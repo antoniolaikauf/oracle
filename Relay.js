@@ -43,7 +43,8 @@ const { i_contract } = require("./instanceContratto.js");
 const signed = i_contract.instance();
 
 function Handle(id, params) {
-  const time2 = new Date("Wed Nov 20 2024 16:11");
+  const time2 = new Date(params);
+  console.log(time2);
 
   const check_time = setInterval(() => {
     const time1 = new Date();
@@ -70,10 +71,10 @@ async function main() {
     // ascolto evento
     // gli eventi si trovano nelle abi
     contractInstance.on("Request_Cu", (id, params_Cu, event) => {
-      Handle(id, params_Cu);
-      console.log(id, 'sono id');
-      console.log(params_Cu, 'parametri ');
-      console.log(event, 'evento generale ');
+      Handle(id, params_Cu[2]);
+      // console.log(id, "sono id");
+      // console.log(params_Cu, "parametri ");
+      // console.log(event, "evento generale ");
     });
 
     console.log("In ascolto degli eventi...");
@@ -91,5 +92,26 @@ Use a cryptographic library that supports secure key generation and signing (e.g
 Ensure the private key remains within the enclave's memory space, protected from external access.
 Use the public key (pk) to register the enclave on the blockchain or with external validators.
 
+Intel® Software Guard Extensions (Intel® SGX) No il mio processore non supporta SGX 
+quindi le due funzioni che prendono dati le crypto, inoltre buona pratica bisogna
+criptare anche i parametri che passano dal relay alla recive cosi che non si mostrino neanche i parametri
 
+
+
+Part II : Message Security
+CHAPTER 3: Block Ciphers
+CHAPTER 4: Block Cipher Modes
+CHAPTER 6: Message Authentication Codes (MACs)
+CHAPTER 7: The Secure Channel
+CHAPTER 8: Implementation Issues (I)
+
+Part III : Key Negotiation
+CHAPTER 9: Generating Randomness
+CHAPTER 11: Diffie-Hellman
+CHAPTER 12: RSA
+
+Part IV : Key Management
+CHAPTER 21: Storing Secrets
+
+Zero-Knowledge Proofs (ZKP)
 */
